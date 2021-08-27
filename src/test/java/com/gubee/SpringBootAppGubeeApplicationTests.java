@@ -9,5 +9,5 @@ class SpringBootAppGubeeApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
+	
 }

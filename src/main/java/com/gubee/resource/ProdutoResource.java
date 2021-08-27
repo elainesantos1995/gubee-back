@@ -57,7 +57,7 @@ public class ProdutoResource {
 		return this.service.getAll();
 	}
 	
-	@GetMapping("/filter/{tecnologias}/{mercadoAlvo}")
+	@GetMapping("/filter")
 	@ResponseStatus(HttpStatus.OK)	
 	public List<Produto> getByFilter(@RequestParam(required = false) String tecnologias, @RequestParam(required = false) String mercadoAlvo) {
 		
@@ -69,6 +69,4 @@ public class ProdutoResource {
 	
 	}
 	
-	// :8090/produtos?tecnologias=React, Java, Lua&mercadoAlvo=Mercado 1, Mercado 2
-
 }
