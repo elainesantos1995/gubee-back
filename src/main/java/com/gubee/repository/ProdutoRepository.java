@@ -11,7 +11,10 @@ import com.gubee.model.Produto;
 
 public interface ProdutoRepository extends JpaRepository<Produto, Integer>{
 	
-	@Query("SELECT distinct p FROM Produto p JOIN p.tecnologias t WHERE t.nome IN :tecnologias AND mercadoAlvo = :mercadoAlvo")
+	@Query("SELECT distinct p FROM Produto p "
+			+ "JOIN p.tecnologias t "
+			+ "WHERE (COALESCE(:tecnologias, NULL) IS NULL OR t.nome IN :tecnologias) "
+			+ "AND (p.mercadoAlvo = :mercadoAlvo OR :mercadoAlvo is NULL) ")
 	public List<Produto> getAllByFilterPersonal(@Param("tecnologias") Set<String> tecnologias, 
 			@Param("mercadoAlvo") String mercadoAlvo);
 

@@ -14,10 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.gubee.model.Produto;
-import com.gubee.model.Tecnologia;
 import com.gubee.repository.ProdutoRepository;
 import com.gubee.service.ProdutoService;
-import com.gubee.utils.ProdutoFilter;
 
 @Service
 public class ProdutoServiceImpl implements ProdutoService {
@@ -84,7 +82,11 @@ public class ProdutoServiceImpl implements ProdutoService {
 	}
 	
 	public List<Produto> findAllByTecnologias(String tecnologias, String mercadoAlvo) {
-		List<String> items = Arrays.asList(tecnologias.split("\\s*,\\s*"));
+		
+		List<String> items = new ArrayList<>();
+		if(tecnologias != null) {
+			items = Arrays.asList(tecnologias.split("\\s*,\\s*"));			
+		}
 		Set<String> set = new HashSet<>(items);
 		
 		List<Produto> produtos = this.repository.getAllByFilterPersonal(set, mercadoAlvo);

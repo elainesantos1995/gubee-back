@@ -61,12 +61,12 @@ public class ProdutoResource {
 	@ResponseStatus(HttpStatus.OK)	
 	public List<Produto> getByFilter(@RequestParam(required = false) String tecnologias, @RequestParam(required = false) String mercadoAlvo) {
 		
-		if((tecnologias.equals("")) || (mercadoAlvo.equals(""))) {
+		if((tecnologias == null || tecnologias.equals("")) && (mercadoAlvo == null || mercadoAlvo.equals(""))) {						
 			return this.service.getAll();
-		}else {
-			return this.service.findAllByTecnologias(tecnologias, mercadoAlvo);			
+		} else {
+			return this.service.findAllByTecnologias(tecnologias, mercadoAlvo);
 		}
-		
+	
 	}
 	
 	// :8090/produtos?tecnologias=React, Java, Lua&mercadoAlvo=Mercado 1, Mercado 2
